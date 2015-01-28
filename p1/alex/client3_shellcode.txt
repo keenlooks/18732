@@ -1,36 +1,36 @@
-08048308 <shellcode>:
- 8048308:	eb 27                	jmp    8048331 <ender>
+080482f4 <shellcode>:
+ 80482f4:	eb 27                	jmp    804831d <ender>
 
-0804830a <starter>:
- 804830a:	31 d2                	xor    %edx,%edx
- 804830c:	31 c9                	xor    %ecx,%ecx
- 804830e:	31 c0                	xor    %eax,%eax
- 8048310:	66 ba 24 01          	mov    $0x124,%dx
- 8048314:	b1 42                	mov    $0x42,%cl
- 8048316:	5b                   	pop    %ebx
- 8048317:	83 6b 07 01          	subl   $0x1,0x7(%ebx)
- 804831b:	b0 05                	mov    $0x5,%al
- 804831d:	cd 80                	int    $0x80
- 804831f:	31 d2                	xor    %edx,%edx
- 8048321:	31 c9                	xor    %ecx,%ecx
- 8048323:	b2 0c                	mov    $0xc,%dl
- 8048325:	80 c3 08             	add    $0x8,%bl
- 8048328:	89 d9                	mov    %ebx,%ecx
- 804832a:	89 c3                	mov    %eax,%ebx
- 804832c:	b0 04                	mov    $0x4,%al
- 804832e:	cd 80                	int    $0x80
- 8048330:	c3                   	ret    
+080482f6 <starter>:
+ 80482f6:	31 d2                	xor    %edx,%edx
+ 80482f8:	31 c9                	xor    %ecx,%ecx
+ 80482fa:	31 c0                	xor    %eax,%eax
+ 80482fc:	66 ba 24 01          	mov    $0x124,%dx
+ 8048300:	b1 42                	mov    $0x42,%cl
+ 8048302:	5b                   	pop    %ebx
+ 8048303:	83 6b 0a 01          	subl   $0x1,0xa(%ebx)
+ 8048307:	b0 05                	mov    $0x5,%al
+ 8048309:	cd 80                	int    $0x80
+ 804830b:	31 d2                	xor    %edx,%edx
+ 804830d:	31 c9                	xor    %ecx,%ecx
+ 804830f:	b2 0c                	mov    $0xc,%dl
+ 8048311:	80 c3 0b             	add    $0xb,%bl
+ 8048314:	89 d9                	mov    %ebx,%ecx
+ 8048316:	89 c3                	mov    %eax,%ebx
+ 8048318:	b0 04                	mov    $0x4,%al
+ 804831a:	cd 80                	int    $0x80
+ 804831c:	c3                   	ret    
 
-08048331 <ender>:
- 8048331:	e8 d4 ff ff ff       	call   804830a <starter>
- 8048336:	66 6f                	outsw  %ds:(%esi),(%dx)
- 8048338:	6f                   	outsl  %ds:(%esi),(%dx)
- 8048339:	62 61 72             	bound  %esp,0x72(%ecx)
- 804833c:	2e 74 78             	je,pn  80483b7 <__libc_start_main+0x67>
- 804833f:	74 00                	je     8048341 <ender+0x10>
- 8048341:	49                   	dec    %ecx
- 8048342:	20 77 69             	and    %dh,0x69(%edi)
- 8048345:	6e                   	outsb  %ds:(%esi),(%dx)
- 8048346:	20 61 67             	and    %ah,0x67(%ecx)
- 8048349:	61                   	popa   
- 804834a:	69 6e 21 00
+0804831d <ender>:
+ 804831d:	e8 d4 ff ff ff       	call   80482f6 <starter>
+ 8048322:	66 6f                	outsw  %ds:(%esi),(%dx)
+ 8048324:	6f                   	outsl  %ds:(%esi),(%dx)
+ 8048325:	62 61 72             	bound  %esp,0x72(%ecx)
+ 8048328:	2e 74 78             	je,pn  80483a3 <__libc_start_main+0x53>
+ 804832b:	74 01                	je     804832d <ender+0x10>
+ 804832d:	49                   	dec    %ecx
+ 804832e:	20 77 69             	and    %dh,0x69(%edi)
+ 8048331:	6e                   	outsb  %ds:(%esi),(%dx)
+ 8048332:	20 61 67             	and    %ah,0x67(%ecx)
+ 8048335:	61                   	popa   
+ 8048336:	69 6e 21
